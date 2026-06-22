@@ -27,15 +27,41 @@ DOCTY<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <script src="https://pl29849967.effectivecpmnetwork.com/66/7d/3b/667d3bdf0858b052e317533a8f16e7b3.js"></script>
+    <div id="video-container" style="position: relative; width: 100%; max-width: 800px; margin: 0 auto;">
+    
+    <div id="click-overlay" onclick="handleStreamClick()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; cursor: pointer; background: rgba(0,0,0,0.01);"></div>
 
-<iframe src="https://jkndasijn.work.gd/embed.php?id=4005135022" 
-        width="100%" 
-        height="500px" 
-        frameborder="0" 
-        sandbox="allow-scripts allow-same-origin allow-forms" 
-        allowfullscreen>
-</iframe>
+    <iframe id="match-player" src="https://jkndasijn.work.gd/embed.php?id=4005135022" 
+            width="100%" 
+            height="500px" 
+            frameborder="0" 
+            sandbox="allow-scripts allow-same-origin allow-forms" 
+            allowfullscreen>
+    </iframe>
+</div>
+
+<script>
+    let clickCount = 0;
+
+    function handleStreamClick() {
+        clickCount++;
+
+        if (clickCount === 1) {
+            // الضغطة الأولى: تفتح نافذة إعلانية أولى
+            window.open('https://streaming-omega-two.vercel.app/', '_blank');
+        } 
+        else if (clickCount === 2) {
+            // الضغطة الثانية: تفتح نافذة إعلانية ثانية
+            window.open('https://streaming-omega-two.vercel.app/', '_blank');
+        } 
+        else if (clickCount >= 3) {
+            // الضغطة الثالثة: تختفي الطبقة تماماً ويصبح البث قابلاً للتشغيل
+            document.getElementById('click-overlay').style.display = 'none';
+            // نفتح النافذة الأخيرة لتأكيد الأرباح
+            window.open('https://streaming-omega-two.vercel.app/', '_blank');
+        }
+    }
+</script>
 
 
 
