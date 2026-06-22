@@ -55,12 +55,7 @@ DOCTY<!DOCTYPE html>
         if (clickCount <= 2) {
             // الضغطة الأولى والثانية: تفتح صفحة الإعلان الحقيقية مباشرة في تبويب جديد دون تكرار موقعك
             window.open(realAdUrl, '_blank');
-        } 
-        else if (clickCount >= 3) {
-            // الضغطة الثالثة: تفتح الإعلان الأخير وتزيل الغطاء الشفاف فوراً ليظهر البث وتختفي العوائق
-            window.open(realAdUrl, '_blank');
-            document.getElementById('click-overlay').style.style.display = 'none';
-        }
+        
     }
 </script>
 
