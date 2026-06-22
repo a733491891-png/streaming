@@ -28,11 +28,23 @@ DOCTY<!DOCTYPE html>
 </head>
 <body>
 <div id="video-container">
-    <video id="my-video" controls autoplay width="100%">
-        <source src="https://jkndasijn.work.gd/proxy.php?data=JQ0nFRBlSIsmAApbHl1alRA9ABQdFxgvBgxCAglGe1cwCg5dBBgpBAleUUtRP1YgFQwAEQdmVFY%3D" type="application/x-mpegURL">
-        متصفحك لا يدعم تشغيل هذا الفيديو.
-    </video>
+    <video id="video" controls autoplay width="100%"></video>
 </div>
+
+<script>
+    var video = document.getElementById('video');
+    // الرابط الصافي الذي استخرجته من السطر 14
+    var videoSrc = 'https://live.chbba.online/hls/ch4/index.m3u8'; 
+
+    if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+    }
+</script>
+
 
 
     <nav class="navbar-custom">
