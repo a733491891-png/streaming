@@ -1,24 +1,19 @@
-DOCTY<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta name="description" content="الموقع الرسمي لمتابعة مباريات المنتخب العراقي وأسود الرافدين ببث مباشر وجودة عالية وبدون تقطيع.">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة أسود الرافدين - بث مباشر</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     
     <style>
         body { background-color: #121212; color: #ffffff; font-family: sans-serif; }
         .navbar-custom { background-color: #007a3d; padding: 15px; text-align: center; border-bottom: 3px solid #000; }
         .brand-title { font-size: 24px; font-weight: bold; color: white; text-decoration: none; }
-        #video-container { display: none; background-color: #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        video { width: 100%; border-radius: 8px; max-height: 450px; }
-        .match-card { background-color: #1e1e1e; color: #ffffff; border: 1px solid #2d2d2d; border-radius: 12px; padding: 20px; margin-bottom: 15px; cursor: pointer; transition: transform 0.2s; }
-        .match-card:hover { transform: scale(1.01); background-color: #252525; border-color: #007a3d; }
+        #video-container { position: relative; width: 100%; max-width: 800px; margin: 20px auto; background-color: #000; padding: 10px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .match-card { background-color: #1e1e1e; color: #ffffff; border: 1px solid #2d2d2d; border-radius: 12px; padding: 20px; margin-bottom: 15px; }
         .team-name { font-size: 20px; font-weight: bold; }
         .team-logo { width: 65px; height: 65px; object-fit: contain; border-radius: 5px; }
         .score { font-size: 26px; font-weight: bold; color: #ffcc00; }
@@ -27,55 +22,28 @@ DOCTY<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <!-- حاوية المشغل مع الغطاء الذكي -->
-<div id="video-container" style="position: relative; width: 100%; max-width: 800px; margin: 0 auto;">
-    
-    <!-- الغطاء الشفاف الذي يختفي بعد 3 ضغطات إعلانية حقيقية -->
-    <div id="click-overlay" onclick="handleStreamClick()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; cursor: pointer; background: rgba(0,0,0,0.01);"></div>
-
-    <!-- مشغل المباراة الأصلي -->
-    <iframe id="match-player" src="https://jkndasijn.work.gd/embed.php?id=4005135022" 
-            width="100%" 
-            height="500px" 
-            frameborder="0" 
-            sandbox="allow-scripts allow-same-origin allow-forms" 
-            allowfullscreen>
-    </iframe>
-</div>
-
-<script>
-    let clickCount = 0;
-    
-    // تم استخراج رابط خادم الإعلانات المباشر الخاص بك من سكريبت Adsterra لفتح إعلان حقيقي مباشرة
-    const realAdUrl = "https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27";
-
-    function handleStreamClick() {
-        clickCount++;
-
-        if (clickCount <= 2) {
-            // الضغطة الأولى والثانية: تفتح صفحة الإعلان الحقيقية مباشرة في تبويب جديد دون تكرار موقعك
-            window.open(realAdUrl, '_blank');
-        
-    }
-</script>
-
-
-
 
     <nav class="navbar-custom">
         <a href="#" class="brand-title"><i class="fa-solid fa-trophy me-2 text-warning"></i> موقع بث مباريات المنتخب العراقي</a>
     </nav>
 
     <div class="container my-4">
-        
+
         <div id="video-container">
-            <h4 class="text-center text-warning mb-2" id="playing-title">جاري تشغيل البث المباشر...</h4>
-            <video id="video" controls autoplay></video>
+            <div id="click-overlay" onclick="handleStreamClick()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; cursor: pointer; background: rgba(0,0,0,0.01);"></div>
+
+            <iframe id="match-player" src="https://jkndasijn.work.gd/embed.php?id=4005135022" 
+                    width="100%" 
+                    height="500px" 
+                    frameborder="0" 
+                    sandbox="allow-scripts allow-same-origin allow-forms" 
+                    allowfullscreen>
+            </iframe>
         </div>
 
         <h5 class="mb-3 text-success"><i class="fa-solid fa-circle-play me-2"></i> المباريات الجارية الآن:</h5>
 
-        <div class="match-card" data-team="العراق ضد الخصم" data-stream="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
+        <div class="match-card">
             <div class="row align-items-center text-center">
                 <div class="col-4 d-flex align-items-center justify-content-center gap-3">
                     <img src="https://flagcdn.com/w160/iq.png" class="team-logo" alt="العراق">
@@ -103,31 +71,24 @@ DOCTY<!DOCTYPE html>
     </div>
 
     <script>
-        document.querySelectorAll('.match-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const streamUrl = this.getAttribute('data-stream');
-                const teamTitle = this.getAttribute('data-team');
-                
-                document.getElementById('video-container').style.display = 'block';
-                document.getElementById('playing-title').innerText = "بث مباشر: " + teamTitle;
-                
-                const video = document.getElementById('video');
-                
-                if (Hls.isSupported()) {
-                    const hls = new Hls();
-                    hls.loadSource(streamUrl);
-                    hls.attachMedia(video);
-                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                        video.play();
-                    });
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = streamUrl;
-                    video.addEventListener('loadedmetadata', function() {
-                        video.play();
-                    });
-                }
-            });
-        });
+        let clickCount = 0;
+        
+        // رابط خادم الإعلانات الذكي الخاص بك من Adsterra
+        const realAdUrl = "https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27";
+
+        function handleStreamClick() {
+            clickCount++;
+
+            if (clickCount <= 2) {
+                // الضغطة الأولى والثانية: تفتح صفحة الإعلان الحقيقية في تبويب جديد
+                window.open(realAdUrl, '_blank');
+            } 
+            else if (clickCount >= 3) {
+                // الضغطة الثالثة: تفتح الإعلان الأخير وتزيل الغطاء الشفاف فوراً ليتفاعل المستخدم مع البث
+                window.open(realAdUrl, '_blank');
+                document.getElementById('click-overlay').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
