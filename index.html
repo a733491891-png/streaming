@@ -72,19 +72,13 @@
 
     <script>
         let clickCount = 0;
-        let isInitialLocked = true; // لمنع تفاعل البث في البداية قبل الـ 3 ضغطات
+        let isInitialLocked = true; 
         
-        // امسح العبارة بالأسفل وضع مكانها الرابط الذي نسخته من زر COPY LINK
-        const realAdUrl = "ضع_رابط_الـ_COPY_LINK_هنا"; 
+        // تم دمج الرابط الذكي والنظيف (Smartlink) الخاص بحسابك هنا مباشرة لتبدأ الأرباح بالعمل فوراً
+        const realAdUrl = "https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27"; 
 
         function handleStreamClick() {
-            // تحقق أولاً من أنك قمت بتغيير الرابط
-            if (realAdUrl === "https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27") {
-                alert("https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27");
-                return;
-            }
-
-            // --- المرحلة الأولى: قفل البداية (3 ضغطات حتمية لفتح البث) ---
+            // --- المرحلة الأولى: قفل البداية (3 ضغطات لفتح البث لأول مرة) ---
             if (isInitialLocked) {
                 clickCount++;
                 if (clickCount <= 2) {
@@ -93,30 +87,30 @@
                 else if (clickCount >= 3) {
                     window.open(realAdUrl, '_blank');
                     document.getElementById('click-overlay').style.display = 'none';
-                    isInitialLocked = false; // فك قفل البداية
+                    isInitialLocked = false; 
                     
-                    // تشغيل مؤقت الـ 30 ثانية في الخلفية
+                    // تشغيل مؤقت الـ 30 ثانية لأول مرة في الخلفية
                     startAdTimer();
                 }
             } 
-            // --- المرحلة الثانية: الإعلانات الدورية (كل 30 ثانية ضغطة واحدة تفتح إعلان) ---
+            // --- المرحلة الثانية: الإعلانات الدورية (كل 30 ثانية ضغطة واحدة تفتح إعلان جديد) ---
             else {
                 window.open(realAdUrl, '_blank');
                 
-                // إخفاء الغطاء فوراً حتى يتفاعل المشاهد مع الفيديو
+                // إخفاء الغطاء مباشرة لكي يستمر المشاهد بمتابعة المباراة دون انزعاج متواصل
                 document.getElementById('click-overlay').style.display = 'none';
                 
-                // إعادة تشغيل المؤقت ليحسب 30 ثانية جديدة
+                // إعادة تدوير المؤقت ليحسب 30 ثانية جديدة
                 startAdTimer();
             }
         }
 
-        // دالة تشغيل المؤقت (30 ثانية = 30,000 مللي ثانية)
+        // دالة تشغيل المؤقت (30 ثانية = 30000 مللي ثانية)
         function startAdTimer() {
             setTimeout(function() {
-                // إظهار الغطاء الشفاف مجدداً لقفل الشاشة بعد انتهاء الـ 30 ثانية
+                // إعادة إظهار الغطاء الشفاف لقفل الشاشة بعد مرور 30 ثانية
                 document.getElementById('click-overlay').style.display = 'block';
-                console.log("تم إعادة تفعيل الإعلان الدوري بعد مرور 30 ثانية.");
+                console.log("مرت 30 ثانية، تم تجهيز الإعلان الدوري القادم.");
             }, 30000); 
         }
     </script>
