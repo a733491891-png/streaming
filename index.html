@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة أسود الرافدين - بث مباشر</title>
+    
+    <!-- 🚀 كود إثبات ملكية Google AdSense المدمج -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5952794091908109" crossorigin="anonymous"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -74,11 +78,9 @@
         let clickCount = 0;
         let isInitialLocked = true; 
         
-        // تم دمج الرابط الذكي والنظيف (Smartlink) الخاص بحسابك هنا مباشرة لتبدأ الأرباح بالعمل فوراً
         const realAdUrl = "https://www.effectivecpmnetwork.com/z30dnikhy?key=4b52923a1cbe17849d1e3fac705d8f27"; 
 
         function handleStreamClick() {
-            // --- المرحلة الأولى: قفل البداية (3 ضغطات لفتح البث لأول مرة) ---
             if (isInitialLocked) {
                 clickCount++;
                 if (clickCount <= 2) {
@@ -89,26 +91,18 @@
                     document.getElementById('click-overlay').style.display = 'none';
                     isInitialLocked = false; 
                     
-                    // تشغيل مؤقت الـ 30 ثانية لأول مرة في الخلفية
                     startAdTimer();
                 }
             } 
-            // --- المرحلة الثانية: الإعلانات الدورية (كل 30 ثانية ضغطة واحدة تفتح إعلان جديد) ---
             else {
                 window.open(realAdUrl, '_blank');
-                
-                // إخفاء الغطاء مباشرة لكي يستمر المشاهد بمتابعة المباراة دون انزعاج متواصل
                 document.getElementById('click-overlay').style.display = 'none';
-                
-                // إعادة تدوير المؤقت ليحسب 30 ثانية جديدة
                 startAdTimer();
             }
         }
 
-        // دالة تشغيل المؤقت (30 ثانية = 30000 مللي ثانية)
         function startAdTimer() {
             setTimeout(function() {
-                // إعادة إظهار الغطاء الشفاف لقفل الشاشة بعد مرور 30 ثانية
                 document.getElementById('click-overlay').style.display = 'block';
                 console.log("مرت 30 ثانية، تم تجهيز الإعلان الدوري القادم.");
             }, 30000); 
